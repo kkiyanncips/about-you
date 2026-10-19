@@ -1,0 +1,582 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Love 💙</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #08070d;
+    overflow: hidden;
+    font-family: monospace;
+}
+
+canvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* SLIDE 3: SCRAPBOOK KENANGAN */
+#scrapbook {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(circle at 20% 20%, #f7e8dc 0, transparent 35%),
+        radial-gradient(circle at 80% 80%, #c9dce8 0, transparent 35%),
+        #ded4c9;
+    overflow: hidden;
+    z-index: 10;
+}
+
+#scrapbook.active {
+    display: flex;
+}
+
+.scrapbook-title {
+    position: absolute;
+    top: 8%;
+    width: 100%;
+    padding: 0 15px;
+    text-align: center;
+    color: #29252b;
+    font-family: Georgia, serif;
+    font-size: clamp(20px, 4vw, 34px);
+    letter-spacing: 3px;
+    animation: titleGlow 2s ease-in-out infinite alternate;
+}
+
+.scrapbook-subtitle {
+    position: absolute;
+    top: 16%;
+    width: 100%;
+    padding: 0 20px;
+    text-align: center;
+    color: #62565b;
+    font-family: Georgia, serif;
+    font-size: clamp(11px, 2vw, 15px);
+    letter-spacing: 1px;
+}
+
+.scrapbook-track {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    width: max-content;
+    position: absolute;
+    left: 0;
+    animation: scrapbookMove 32s linear infinite;
+}
+
+.memory-card {
+    width: 330px;
+    height: 225px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    background: #fffdf5;
+    padding: 12px;
+    box-shadow: 0 12px 30px #0003;
+    transform: rotate(-3deg);
+    animation: cardFloat 3s ease-in-out infinite;
+    border: 1px solid #ffffffaa;
+}
+
+.memory-card:nth-child(even) {
+    transform: rotate(3deg);
+    animation-delay: -.8s;
+}
+
+.memory-card:nth-child(3n) {
+    background: #c8e9f8;
+}
+
+.memory-card:nth-child(3n + 1) {
+    background: #ffd5df;
+}
+
+.memory-note {
+    width: 43%;
+    height: 100%;
+    background: #171717;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 12px;
+    font-family: Georgia, serif;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.memory-photo {
+    width: 57%;
+    height: 100%;
+    object-fit: cover;
+    background: #eee;
+    border: 4px solid white;
+}
+
+.scrapbook-footer {
+    position: absolute;
+    bottom: 7%;
+    width: 100%;
+    text-align: center;
+    color: #403740;
+    font-family: Georgia, serif;
+    font-size: clamp(12px, 2vw, 17px);
+    letter-spacing: 2px;
+}
+
+@keyframes scrapbookMove {
+    from { transform: translateX(100vw); }
+    to { transform: translateX(-100%); }
+}
+
+@keyframes cardFloat {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -9px; }
+}
+
+@keyframes titleGlow {
+    from { opacity: .65; }
+    to { opacity: 1; }
+}
+
+@media (max-width: 600px) {
+    .memory-card {
+        width: 275px;
+        height: 185px;
+        padding: 9px;
+        gap: 7px;
+    }
+
+    .memory-note {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .scrapbook-track {
+        gap: 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+<canvas id="screen"></canvas>
+
+<!-- SLIDE 3: SCRAPBOOK FOTO -->
+<div id="scrapbook">
+    <h1 class="scrapbook-title">OUR LITTLE MEMORIES ♡</h1>
+    <p class="scrapbook-subtitle">
+        A little collection of moments with you 💙
+    </p>
+
+    <div class="scrapbook-track">
+        <div class="memory-card">
+            <div class="memory-note">
+                Every moment with you is special ♡
+            </div>
+            <img class="memory-photo" src="foto1.jpeg" alt="Kenangan 1">
+        </div>
+
+        <div class="memory-card">
+            <div class="memory-note">
+                You make my world brighter 💙
+            </div>
+            <img class="memory-photo" src="foto2.jpeg" alt="Kenangan 2">
+        </div>
+
+        <div class="memory-card">
+            <div class="memory-note">
+                My favorite person, always youu
+            </div>
+            <img class="memory-photo" src="foto3.jpeg" alt="Kenangan 3">
+        </div>
+
+        <div class="memory-card">
+            <div class="memory-note">
+                aku akan selalu bilng "I'm pround of you" dalam situasi apapun
+            </div>
+            <img class="memory-photo" src="foto4.jpeg" alt="Kenangan 4">
+        </div>
+
+        <div class="memory-card">
+            <div class="memory-note">
+                life, laugh, love youu💗
+            </div>
+            <img class="memory-photo" src="foto5.jpeg" alt="Kenangan 5">
+        </div>
+    </div>
+
+    <p class="scrapbook-footer">ini effort yg 99% gabisa di ikutin orang orang!! titik tertinggi seorang software enginerr adalah rela bergadang berhari hari untuk membuat webbb khusus to spesial someone♡♡♡</p>
+</div>
+
+<script>
+const canvas = document.getElementById("screen");
+const ctx = canvas.getContext("2d");
+const scrapbook = document.getElementById("scrapbook");
+
+let w, h, columns, drops;
+let start = performance.now();
+let scrapbookShown = false;
+
+function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    w = canvas.width;
+    h = canvas.height;
+
+    columns = Math.ceil(w / 12);
+
+    drops = Array.from(
+        { length: columns },
+        () => Math.random() * -100
+    );
+}
+
+window.addEventListener("resize", resize);
+resize();
+
+const characters = "01アイウエオカキクケコ{}[]<>LOVE♡";
+
+function glowText(text, x, y, size, color = "#38baff") {
+    ctx.save();
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.font = `bold ${size}px monospace`;
+    ctx.fillStyle = color;
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 20;
+    ctx.fillText(text, x, y, w * 0.92);
+    ctx.restore();
+}
+
+function rain() {
+    ctx.fillStyle = "rgba(8, 7, 13, 0.16)";
+    ctx.fillRect(0, 0, w, h);
+    ctx.font = "10px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+        const x = i * 12;
+        const y = drops[i] * 12;
+
+        const char = characters[
+            Math.floor(Math.random() * characters.length)
+        ];
+
+        ctx.fillStyle = Math.random() > 0.6
+            ? "#38baff"
+            : "#0755cc";
+
+        ctx.shadowColor = "#008cff";
+        ctx.shadowBlur = 6;
+        ctx.fillText(char, x, y);
+        ctx.shadowBlur = 0;
+
+        if (y > h && Math.random() > 0.975) {
+            drops[i] = 0;
+        }
+
+        drops[i] += 0.5 + Math.random() * 0.8;
+    }
+}
+
+// SLIDE 1: HATI BIRU
+function firstHeart(t) {
+    ctx.save();
+    ctx.translate(w / 2, h / 2);
+
+    const scale = Math.min(w / 420, h / 550) * 12;
+    const pulse = 1 + Math.sin(t * 0.004) * 0.04;
+
+    ctx.scale(scale * pulse, scale * pulse);
+
+    for (let a = 0; a < Math.PI * 2; a += 0.035) {
+        const x = 16 * Math.pow(Math.sin(a), 3);
+
+        const y = -(
+            13 * Math.cos(a)
+            - 5 * Math.cos(2 * a)
+            - 2 * Math.cos(3 * a)
+            - Math.cos(4 * a)
+        );
+
+        ctx.beginPath();
+        ctx.arc(x / 16, y / 16, 0.035, 0, Math.PI * 2);
+        ctx.fillStyle = "#38baff";
+        ctx.shadowColor = "#008cff";
+        ctx.shadowBlur = 12;
+        ctx.fill();
+    }
+
+    ctx.restore();
+
+    glowText(
+        "Tenangg ajaa ga bakalan ada yang lain kokkk",
+        w / 2,
+        h / 2,
+        Math.min(w * 0.055, 24),
+        "#70d5ff"
+    );
+}
+
+// PARTIKEL UNTUK SLIDE KEDUA
+const particles = [];
+
+for (let i = 0; i < 1800; i++) {
+    const a = Math.random() * Math.PI * 2;
+    const r = Math.sqrt(Math.random());
+
+    const hx = 16 * Math.pow(Math.sin(a), 3);
+
+    const hy = -(
+        13 * Math.cos(a)
+        - 5 * Math.cos(2 * a)
+        - 2 * Math.cos(3 * a)
+        - Math.cos(4 * a)
+    );
+
+    particles.push({
+        x: hx * r,
+        y: hy * r,
+        z: (Math.random() - 0.5) * 9,
+        size: Math.random() * 1.8 + 0.5,
+        phase: Math.random() * Math.PI * 2
+    });
+}
+
+// SLIDE 2: GALAKSI DAN HATI 3D
+function secondSlide(t) {
+    ctx.fillStyle = "rgba(3, 5, 18, 0.25)";
+    ctx.fillRect(0, 0, w, h);
+
+    const cx = w / 2;
+    const cy = h * 0.39;
+    const size = Math.min(w / 34, h / 43);
+    const rot = t * 0.00035;
+
+    // GALAKSI BERBENTUK LINGKARAN
+    ctx.save();
+    ctx.translate(cx, h * 0.64);
+    ctx.scale(1, 0.25);
+
+    for (let ring = 1; ring <= 9; ring++) {
+        ctx.beginPath();
+
+        ctx.ellipse(
+            0, 0,
+            size * ring * 2.4,
+            size * ring * 2.4,
+            0, 0, Math.PI * 2
+        );
+
+        ctx.strokeStyle =
+            `rgba(0, 145, 255, ${0.12 + ring * 0.015})`;
+
+        ctx.lineWidth = 1;
+        ctx.shadowColor = "#008cff";
+        ctx.shadowBlur = 12;
+        ctx.stroke();
+    }
+
+    ctx.restore();
+
+    // PARTIKEL GALAKSI
+    for (let i = 0; i < 450; i++) {
+        const a = i * 2.399 + t * 0.00025;
+
+        const r = (i / 450) *
+            Math.min(w * 0.72, h * 0.45);
+
+        const x = cx + Math.cos(a) * r;
+        const y = h * 0.64 + Math.sin(a) * r * 0.22;
+
+        ctx.beginPath();
+        ctx.arc(x, y, Math.random() * 1.5 + 0.4, 0, Math.PI * 2);
+
+        ctx.fillStyle = i % 3 === 0
+            ? "#d8f5ff"
+            : "#168cff";
+
+        ctx.shadowColor = "#008cff";
+        ctx.shadowBlur = 8;
+        ctx.fill();
+    }
+
+    // HATI PARTIKEL DENGAN EFEK 3D
+    ctx.save();
+
+    for (const p of particles) {
+        const angle = rot + p.phase * 0.08;
+
+        const x3 =
+            p.x * Math.cos(angle) - p.z * Math.sin(angle);
+
+        const z3 =
+            p.x * Math.sin(angle) + p.z * Math.cos(angle);
+
+        const perspective = 1 + z3 * 0.018;
+
+        const x = cx + x3 * size * 0.65 * perspective;
+
+        const y = cy + p.y * size * 0.65 * perspective
+            + Math.sin(t * 0.0015) * 4;
+
+        ctx.beginPath();
+        ctx.arc(x, y, p.size, 0, Math.PI * 2);
+
+        ctx.fillStyle = p.phase > 3
+            ? "#e1f8ff"
+            : "#168cff";
+
+        ctx.shadowColor = "#008cff";
+        ctx.shadowBlur = 10;
+        ctx.fill();
+    }
+
+    ctx.restore();
+
+    // CAHAYA PUSAT
+    const glow = ctx.createRadialGradient(
+        cx, cy, 1,
+        cx, cy, size * 9
+    );
+
+    glow.addColorStop(0, "rgba(0, 130, 255, 0.20)");
+    glow.addColorStop(1, "rgba(0, 50, 180, 0)");
+
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, w, h);
+
+    // TULISAN MENGELILINGI HATI
+    const words = [
+        "I LOVE YOU TAYAWWW♡",
+        "YOU ARE MY WORLD",
+        "My Heart Always For You💢",
+        "MY FAVORITE PERSON",
+        "TAYAWW BOCILL ♡",
+        ""
+    ];
+
+    words.forEach((word, i) => {
+        const a = t * 0.00035 + i * Math.PI / 3;
+
+        const rx = Math.min(w * 0.40, 250);
+        const ry = Math.min(h * 0.20, 160);
+
+        const x = cx + Math.cos(a) * rx;
+        const y = h * 0.49 + Math.sin(a) * ry;
+
+        glowText(
+            word,
+            x,
+            y,
+            Math.max(8, Math.min(w * 0.023, 13)),
+            "#38baff"
+        );
+    });
+
+    // PESAN UTAMA DI BAWAH
+    glowText(
+        "jangan ovt teruss yaaa. tenang ajaa, aku gabakaln cari yg lain kokkk😉",
+        cx,
+        h * 0.84,
+        Math.max(11, Math.min(w * 0.045, 23)),
+        "#70d5ff"
+    );
+
+    glowText(
+        "kamu jngan berulahh duluan yaa, karna aku bkln niruu klo kmu brulah",
+        cx,
+        h * 0.89,
+        Math.max(11, Math.min(w * 0.045, 23)),
+        "#70d5ff"
+    );
+
+    glowText(
+        "ALWAYS Lovee You ♡♡♡",
+        cx,
+        h * 0.94,
+        Math.max(9, Math.min(w * 0.028, 15)),
+        "#FF037A"
+    );
+}
+
+// URUTAN SLIDE OTOMATIS
+// Slide 1: 26 detik
+// Slide 2: 20 detik
+// Slide 3: mulai pada detik ke-46
+
+function animate(now) {
+    const elapsed = (now - start) / 1000;
+
+    if (elapsed < 26) {
+        // SLIDE 1: HUJAN KODE BIRU
+        rain();
+
+        if (elapsed >= 3 && elapsed < 6) {
+            glowText(
+                String(3 - Math.floor(elapsed - 3)),
+                w / 2,
+                h / 2,
+                Math.min(w * 0.2, 110)
+            );
+        }
+
+        if (elapsed >= 6 && elapsed < 9) {
+            glowText("✦", w / 2, h / 2, 90, "#d8f5ff");
+        }
+
+        if (elapsed >= 9 && elapsed < 12) {
+            glowText("You", w / 2, h / 2, 60);
+        }
+
+        if (elapsed >= 12 && elapsed < 15) {
+            glowText("Are", w / 2, h / 2, 60);
+        }
+
+        if (elapsed >= 15 && elapsed < 20) {
+            glowText("✦", w / 2, h / 2, 55);
+        }
+
+        if (elapsed >= 20) {
+            firstHeart(now);
+        }
+
+    } else if (elapsed < 46) {
+        // SLIDE 2: HATI 3D DAN GALAKSI SELAMA 20 DETIK
+        secondSlide(now);
+
+    } else {
+        // SLIDE 3: SCRAPBOOK FOTO
+        if (!scrapbookShown) {
+            scrapbook.classList.add("active");
+            scrapbookShown = true;
+        }
+    }
+
+    requestAnimationFrame(animate);
+}
+
+ctx.fillStyle = "#08070d";
+ctx.fillRect(0, 0, w, h);
+
+requestAnimationFrame(animate);
+</script>
+</body>
+</html>
